@@ -1,16 +1,35 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AngularTokenModule } from 'angular-token';
+
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { EditorComponent } from './editor/editor.component';
+import { SettingsComponent } from './settings/settings.component';
+import { NavigationComponent } from './shared/navigation/navigation.component';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    RegisterComponent,
+    EditorComponent,
+    SettingsComponent,
+    NavigationComponent,
+    FooterComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    AngularTokenModule.forRoot({ })
   ],
-  providers: [],
+  providers: [AngularTokenModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

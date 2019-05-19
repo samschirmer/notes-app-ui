@@ -1,0 +1,78 @@
+<div id="register-container">
+  <div class="content container">
+    <div class="columns">
+
+      <div id="register-panel" class="column is-one-third is-hidden-touch">
+
+        <h2>Get your brainshare on</h2>
+        <h2>It's never been easier</h2>
+        <h2>Also, they're called Nugz</h2>
+        <h2>Who don't want Nugz?</h2>
+
+      </div>
+
+      <div id="register-form" class="column">
+
+        <form id="register" (ngSubmit)="onSubmit()">
+          <div class="page-header">
+            <h1>Create Your Account</h1>
+            <p id="already_exists" class="help is-danger is-hidden">This email is already in use</p>
+          </div>
+
+          <div class="columns is-centered">
+            <div class="column is-half">
+              <div class="field">
+                <label class="label">Name</label>
+                <div class="control">
+                  <input class="input" type="text" name="name" autofocus />
+                </div>
+              <p id="missing_name" class="help is-danger is-hidden">Name is required</p>
+              </div>
+            </div>
+            <div class="column is-half">
+              <label class="label">Organization</label>
+              <div class="control">
+                <input class="input" type="text" name="company" />
+              </div>
+              <p id="missing_company" class="help is-danger is-hidden">Organization is required</p>
+            </div>
+          </div>
+            
+          <div class="field">
+            <label class="label">Email Address</label>
+            <div class="control">
+              <input class="input" type="text" name="email" />
+            </div>
+            <p id="invalid_email" class="help is-danger is-hidden">Email address is invalid</p>
+            <p id="missing_email" class="help is-danger is-hidden">Email address is required</p>
+          </div>
+
+          <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+              <input class="input" type="password" name="password" />
+            </div>
+            <p id="invalid_password" class="help is-danger is-hidden">Passwords must be 8 characters long and contain an uppercase, lowercase, and number</p>
+            <p id="missing_password" class="help is-danger is-hidden">Please enter a password</p>
+          </div>
+
+          <div class="field">
+            <label class="label">Confirm Password</label>
+            <div class="control">
+              <input class="input" type="password" name="confirm_password" />
+            </div>
+            <p id="missing_confirm_password" class="help is-danger is-hidden">Please re-type your password</p>
+            <p id="password_mismatch" class="help is-danger is-hidden">Passwords do not match</p>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <button id="register-button" class="button input-button">Get Started</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

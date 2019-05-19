@@ -1,0 +1,36 @@
+form {
+  max-width: 600px;
+  margin: auto;
+  background-color: #fff;
+}
+
+#register-container {
+  background-color: #1A2551;
+  min-height: 100vh;
+}
+
+#register-panel {
+  padding-top: 10%;
+  min-height: 100vh;
+}
+
+#register-panel h2:first-child {
+  color: #ff40b4 !important;
+}
+
+#register-panel h2:nth-child(2) {
+  color: #E2E735 !important;
+}
+
+#register-panel h2:nth-child(3) {
+  color: #10CFC9 !important;
+}
+
+#register-panel h2:nth-child(4) {
+  color: #87D1E6 !important;
+}
+
+#register-form {
+  background-color: #E5EBF7;
+  padding: 2%;
+}
