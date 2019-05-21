@@ -1,3 +1,9 @@
-<p>
+<div>
   settings works!
-</p>
+  <p>Signed In?: <code>{{tokenService.userSignedIn()}}</code></p>
+
+  <p>
+    <button (click)="signOut()">Sign Out</button>
+  </p>
+
+</div>

@@ -7,15 +7,16 @@ import { EditorComponent } from './editor/editor.component';
 import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/editor', pathMatch: 'full', canActivate: [AngularTokenService] },
+  { path: '', redirectTo: 'editor', pathMatch: 'full', canActivate: [AngularTokenService] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'editor', component: EditorComponent, canActivate: [AngularTokenService] },
   { path: 'settings', component: SettingsComponent, canActivate: [AngularTokenService] },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes), ],
+  imports: [ RouterModule.forRoot(routes) ],
   exports: [RouterModule],
   declarations: []
 })

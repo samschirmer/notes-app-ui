@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularTokenService } from 'angular-token';
 
 @Component({
   selector: 'app-settings',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private tokenService: AngularTokenService) { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  signOut() {
+    console.log('signing out');
+    this.tokenService.signOut().subscribe(
+      res =>      console.log(res),
+      error =>    console.log(error)
+    );
   }
 
 }

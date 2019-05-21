@@ -12,6 +12,15 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() { }
 
-  onSubmit() { }
+  onSubmit() {
+    this.tokenService.registerAccount({
+      login: 'test@test.com',
+      password: 'Password1',
+      passwordConfirmation: 'Password1'
+    }).subscribe(
+      res => console.log(res),
+      err => console.log(err)
+    );
+   }
 
 }

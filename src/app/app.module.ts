@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AngularTokenModule } from 'angular-token';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 
 import { AppComponent } from './app.component';
@@ -27,7 +29,13 @@ import { FooterComponent } from './shared/footer/footer.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    AngularTokenModule.forRoot({ })
+    FormsModule,
+    ReactiveFormsModule,
+    AngularTokenModule.forRoot({
+      apiBase: environment.API_BASE_URL,
+      signOutFailedValidate: true,
+      signInRedirect: 'login'
+    })
   ],
   providers: [AngularTokenModule],
   bootstrap: [AppComponent]
