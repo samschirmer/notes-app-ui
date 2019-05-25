@@ -37,8 +37,8 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     this.tokenService.registerAccount({
-      firstName: this.f.firstName.value,
-      lastName: this.f.lastName.value,
+      first_name: this.f.firstName.value,
+      last_name: this.f.lastName.value,
       login: this.f.email.value,
       password: this.f.password.value,
       passwordConfirmation: this.f.confirm_password.value

@@ -1,5 +1,6 @@
 nav {
-  background-color: #1a2551;
+  background-color: #a9a9a9;
+  color: #fff;
 }
 
 .navbar-brand {
@@ -7,7 +8,7 @@ nav {
 }
 
 a {
-  color: #10cfc9;
+  color: #ff3b3f;
   font-weight: 700;
 }
 

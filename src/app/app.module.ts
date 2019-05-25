@@ -34,7 +34,8 @@ import { FooterComponent } from './shared/footer/footer.component';
     AngularTokenModule.forRoot({
       apiBase: environment.API_BASE_URL,
       signOutFailedValidate: true,
-      signInRedirect: 'login'
+      signInRedirect: 'login',
+      registerAccountCallback: undefined
     })
   ],
   providers: [AngularTokenModule],
