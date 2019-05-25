@@ -14,24 +14,26 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder
     ) {
-    this.form = fb.group({
-    'email': this.email,
-    'password': ['', Validators.required]
+    this.loginForm = this.fb.group({
+     'email': this.email,
+      'password': ['', Validators.required]
     });
   }
 
-  form: FormGroup;
+  loginForm: FormGroup;
   email = new FormControl('', Validators.required);
   password = new FormControl('', Validators.required);
 
 
   ngOnInit() { }
 
+  get f() { return this.loginForm.controls; }
+
   onSubmit() {
     console.log('submitting');
     this.tokenService.signIn({
-      login: 'samschirmer@gmail.com',
-      password: 'Password0'
+      login: this.f.email.value,
+      password: this.f.password.value
     }).subscribe(
       res => {
         console.log(res);
@@ -39,10 +41,10 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['settings']);
         }
       },
-      err => console.log(err)
+      err => {
+        console.log(err);
+      }
     );
-
-    window.location.href = 'localhost:4200/settings';
   }
 
 }

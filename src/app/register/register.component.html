@@ -13,7 +13,7 @@
 
       <div id="register-form" class="column">
 
-        <form id="register" (ngSubmit)="onSubmit()">
+        <form id="register" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
           <div class="page-header">
             <h1>Create Your Account</h1>
             <p id="already_exists" class="help is-danger is-hidden">This email is already in use</p>
@@ -22,26 +22,28 @@
           <div class="columns is-centered">
             <div class="column is-half">
               <div class="field">
-                <label class="label">Name</label>
+                <label class="label">First Name</label>
                 <div class="control">
-                  <input class="input" type="text" name="name" autofocus />
+                  <input class="input" type="text" name="firstName" formControlName="firstName" />
                 </div>
               <p id="missing_name" class="help is-danger is-hidden">Name is required</p>
               </div>
             </div>
             <div class="column is-half">
-              <label class="label">Organization</label>
-              <div class="control">
-                <input class="input" type="text" name="company" />
+              <div class="field">
+                <label class="label">Last Name</label>
+                <div class="control">
+                  <input class="input" type="text" name="lastName" formControlName="lastName" />
+                </div>
+              <p id="missing_name" class="help is-danger is-hidden">Name is required</p>
               </div>
-              <p id="missing_company" class="help is-danger is-hidden">Organization is required</p>
             </div>
           </div>
-            
+
           <div class="field">
             <label class="label">Email Address</label>
             <div class="control">
-              <input class="input" type="text" name="email" />
+              <input class="input" type="email" name="email" formControlName="email" />
             </div>
             <p id="invalid_email" class="help is-danger is-hidden">Email address is invalid</p>
             <p id="missing_email" class="help is-danger is-hidden">Email address is required</p>
@@ -50,7 +52,7 @@
           <div class="field">
             <label class="label">Password</label>
             <div class="control">
-              <input class="input" type="password" name="password" />
+              <input class="input" type="password" name="password" formControlName="password" />
             </div>
             <p id="invalid_password" class="help is-danger is-hidden">Passwords must be 8 characters long and contain an uppercase, lowercase, and number</p>
             <p id="missing_password" class="help is-danger is-hidden">Please enter a password</p>
@@ -59,7 +61,7 @@
           <div class="field">
             <label class="label">Confirm Password</label>
             <div class="control">
-              <input class="input" type="password" name="confirm_password" />
+              <input class="input" type="password" name="confirm_password" formControlName="confirm_password" />
             </div>
             <p id="missing_confirm_password" class="help is-danger is-hidden">Please re-type your password</p>
             <p id="password_mismatch" class="help is-danger is-hidden">Passwords do not match</p>
@@ -67,7 +69,12 @@
 
           <div class="field">
             <div class="control">
-              <button id="register-button" class="button input-button">Get Started</button>
+              <button 
+                id="register-button" 
+                [disabled]="!registerForm.valid" 
+                type="submit" 
+                class="button input-button">Get Started
+              </button>
             </div>
           </div>
 

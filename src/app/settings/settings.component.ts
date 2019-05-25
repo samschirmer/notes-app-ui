@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularTokenService } from 'angular-token';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-settings',
@@ -8,7 +9,7 @@ import { AngularTokenService } from 'angular-token';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor(private tokenService: AngularTokenService) { }
+  constructor(private tokenService: AngularTokenService, private router: Router) { }
 
   ngOnInit() { }
 
@@ -18,6 +19,7 @@ export class SettingsComponent implements OnInit {
       res =>      console.log(res),
       error =>    console.log(error)
     );
+    this.router.navigate(['/login']);
   }
 
 }

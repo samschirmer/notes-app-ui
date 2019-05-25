@@ -2,7 +2,7 @@
   <div class="content container">
     <div id="login-form">
 
-      <form id="login" [formGroup]="form" (ngSubmit)="onSubmit()">
+      <form id="login" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <div class="page-header">
           <h1>Login</h1>
           <p id="invalid" class="help is-danger is-hidden">Invalid credentials</p>
@@ -24,7 +24,7 @@
 
         <div class="field">
           <div class="control">
-            <button id="login-button" [disabled]="!form.valid" type="submit" class="button input-button">Login</button>
+            <button id="login-button" [disabled]="!loginForm.valid" type="submit" class="button input-button">Login</button>
           </div>
         </div>
 
