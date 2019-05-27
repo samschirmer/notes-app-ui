@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
   get f() { return this.loginForm.controls; }
 
   onSubmit() {
-    console.log('submitting');
     this.tokenService.signIn({
       login: this.f.email.value,
       password: this.f.password.value
@@ -38,7 +37,7 @@ export class LoginComponent implements OnInit {
       res => {
         console.log(res);
         if (res.status === 200) {
-          this.router.navigate(['settings']);
+          this.router.navigate(['editor']);
         }
       },
       err => {

@@ -14,6 +14,8 @@ import { EditorComponent } from './editor/editor.component';
 import { SettingsComponent } from './settings/settings.component';
 import { NavigationComponent } from './shared/navigation/navigation.component';
 import { FooterComponent } from './shared/footer/footer.component';
+import { ResultsComponent } from './results/results.component';
+import { SearchService } from './services/search.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { FooterComponent } from './shared/footer/footer.component';
     EditorComponent,
     SettingsComponent,
     NavigationComponent,
-    FooterComponent
+    FooterComponent,
+    ResultsComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,7 @@ import { FooterComponent } from './shared/footer/footer.component';
       registerAccountCallback: undefined
     })
   ],
-  providers: [AngularTokenModule],
+  providers: [AngularTokenModule, SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

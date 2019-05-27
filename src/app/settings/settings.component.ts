@@ -14,7 +14,6 @@ export class SettingsComponent implements OnInit {
   ngOnInit() { }
 
   signOut() {
-    console.log('signing out');
     this.tokenService.signOut().subscribe(
       res =>      console.log(res),
       error =>    console.log(error)

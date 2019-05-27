@@ -1,6 +1,6 @@
 nav {
-  background-color: #a9a9a9;
-  color: #fff;
+  background-color: #fff;
+  color: #a9a9a9;
 }
 
 .navbar-brand {
@@ -13,5 +13,9 @@ a {
 }
 
 .navbar-item {
-  color: #fff;
+  color: #171717;
+}
+
+#navbar-icon .navbar-link:hover {
+  color: #ff3b3f;
 }
