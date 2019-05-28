@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { SearchService } from '../services/search.service';
 import { ISearchResult } from '../models/ISearchResult.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-results',
@@ -16,16 +17,15 @@ export class ResultsComponent implements OnInit {
   constructor(private searchResults: SearchService) { }
 
   ngOnInit() {
-    this.checkForResults();
+    this.results = {results:  []} as ISearchResult;
+    this.searchResults.searchChange.subscribe(ch => this.results = ch);
   }
 
-  checkForResults() {
-    if (this.searchResults.lastResults) {
-      this.results = this.searchResults.lastResults;
-      this.resultsList = this.results;
-    } else {
-      this.emptyResults = true;
-    }
+  highlightRow(id) {
+    document.getElementById(id).classList.add('is-selected');
+  }
+  dehighlightRow(id) {
+    document.getElementById(id).classList.remove('is-selected');
   }
 
 }

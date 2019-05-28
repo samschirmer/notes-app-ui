@@ -15,9 +15,17 @@ export class SearchService {
 
   searchChange: Subject<ISearchResult> = new Subject<ISearchResult>();
 
-  constructor()  {
+  constructor(
+    private httpClient: HttpClient
+  )  {
     this.searchChange.subscribe((value) => {
-    this.lastResults = value;
+      this.lastResults = value;
     });
+   }
+
+  query(terms: string): void {
+    this.httpClient.post(`${this.apiUrl}/search`,
+    { note: { terms: terms }})
+    .subscribe((res: ISearchResult) => { this.searchChange.next(res); });
   }
 }

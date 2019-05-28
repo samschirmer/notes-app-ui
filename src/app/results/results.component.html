@@ -1,3 +1,40 @@
 <div id="results-container">
-  results works!
+    <div *ngIf="results.results.length === 0; else results_list">
+        <h1>No results</h1>
+    </div>
+
+    <ng-template #results_list>
+        <table class="table is-fullwidth">
+          <thead>
+            <tr>
+              <th class="has-text-left">Title</th>
+              <th class="has-text-left">Content</th>
+              <th class="has-text-left">Author</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr 
+              *ngFor="let res of results.results" 
+              (mouseenter)="highlightRow(res.id)" 
+              (mouseleave)="dehighlightRow(res.id)" 
+              id="{{ res.id }}"
+            >
+              <td class="has-text-left">{{ res.subject }}</td>
+              <td class="has-text-left">{{ res.body }}</td>
+              <td class="has-text-left">{{ res.author }}</td>
+<!--              <td><a routerLink="/notes/{{ res.Account.AccountCompanyID }}">{{ res.Account.AccountCompanyName }}</a></td>
+              <td class="has-text-right">{{ res.Account.ChargifySubscriptionID }}</td>
+              <td>{{ res.Account.SGUserName }}</td>
+              <td class="has-text-centered"><i [ngClass]="res.Account.SubscriptionStateID == 7 ? 'fa fa-times has-text-danger' : 'fa fa-check has-text-success'"></i></td>
+              <td class="has-text-centered"><i [ngClass]="res.Account.CountryID == 230 ? 'fas fa-flag-usa has-text-danger' : 'fa fa-globe-americas has-text-info'"></i></td>
+              <td class="has-text-centered">
+                <a (click)="toggleSearchResultModal(res.Account, res.Users)"><i class="fa fa-users"></i></a> | 
+                <a (click)="quickLogin(res.Users)"><i class="fas fa-crown"></i></a>
+              </td>
+            -->
+            </tr>
+          </tbody>
+        </table>
+    </ng-template>
+
 </div>
