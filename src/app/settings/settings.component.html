@@ -2,6 +2,18 @@
   settings works!
   <p>Signed In?: <code>{{tokenService.userSignedIn()}}</code></p>
 
+  <h1 class="is-size-3">Categories</h1>
+  <ul>
+    <li *ngFor="let c of categories">{{ c.name }}</li>
+  </ul>
+  <h1 class="is-size-3">Add Category</h1>
+  <div>
+    <input [(ngModel)]="newCategory" /> 
+    <button (click)="addCategory()">+</button> 
+  </div>
+
+
+
   <p>
     <button (click)="signOut()">Sign Out</button>
   </p>

@@ -16,6 +16,7 @@ import { NavigationComponent } from './shared/navigation/navigation.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { ResultsComponent } from './results/results.component';
 import { SearchService } from './services/search.service';
+import { ApiService } from './services/api.service';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,11 @@ import { SearchService } from './services/search.service';
       registerAccountCallback: undefined
     })
   ],
-  providers: [AngularTokenModule, SearchService],
+  providers: [
+    AngularTokenModule,
+    SearchService,
+    ApiService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

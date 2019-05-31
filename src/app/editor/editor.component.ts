@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { ApiService } from '../services/api.service';
+import { ICategory } from '../models/ICategory.interface';
 
 @Component({
   selector: 'app-editor',
@@ -15,21 +17,32 @@ export class EditorComponent implements OnInit {
     private tokenService: AngularTokenService,
     private router: Router,
     private fb: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private api: ApiService
     ) {
     this.editorForm = this.fb.group({
+      'category': [''],
       'subject': ['', Validators.required],
       'content': ['', Validators.required]
     });
   }
 
   editorForm: FormGroup;
+  category = new FormControl('');
   subject = new FormControl('', Validators.required);
   content = new FormControl('', Validators.required);
+
   apiUrl = environment.API_BASE_URL;
   processing = false;
+  categories: Array<ICategory>;
 
-  ngOnInit() { }
+
+  ngOnInit() {
+    this.categories = [{}] as Array<ICategory>;
+    this.api.fetch('categories').subscribe((res: Array<ICategory>) => {
+      this.categories = res;
+    });
+  }
 
   get f() { return this.editorForm.controls; }
 
@@ -38,6 +51,7 @@ export class EditorComponent implements OnInit {
     if (this.editorForm.valid) {
       this.http.post(`${this.apiUrl}/notes`,
       { note: {
+        category_id: this.f.category.value,
         subject: this.f.subject.value,
         body: this.f.content.value
       }}).subscribe(

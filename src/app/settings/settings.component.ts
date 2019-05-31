@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularTokenService } from 'angular-token';
 import { Router } from '@angular/router';
+import { ICategory } from '../models/ICategory.interface';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-settings',
@@ -9,9 +11,29 @@ import { Router } from '@angular/router';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor(private tokenService: AngularTokenService, private router: Router) { }
+  constructor(
+    private tokenService: AngularTokenService,
+    private api: ApiService,
+    private router: Router
+    ) { }
 
-  ngOnInit() { }
+  categories: Array<ICategory>;
+  newCategory: string;
+
+
+  ngOnInit() {
+    this.categories = [{}] as Array<ICategory>;
+    this.api.fetch('categories').subscribe((res: Array<ICategory>) => {
+      this.categories = res;
+    });
+  }
+
+  addCategory() {
+    console.log(this.newCategory);
+    this.api.createCategory(this.newCategory).subscribe((res: Array<ICategory>) => {
+      this.categories = res;
+    });
+  }
 
   signOut() {
     this.tokenService.signOut().subscribe(
