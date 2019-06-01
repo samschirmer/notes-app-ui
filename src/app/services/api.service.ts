@@ -20,4 +20,11 @@ export class ApiService {
   createCategory(name: string): Observable<any> {
     return this.http.post(`${baseUrl}/categories`, {category: { name: name, status: 1 }}).pipe(map(response => response));
   }
+
+  removeCategory(category: ICategory): Observable<any> {
+    return this.http.put(
+      `${baseUrl}/categories/${category.id}`,
+      { category: { name: category.name, status: 0 }})
+      .pipe(map(response => response));
+  }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { SearchService } from '../services/search.service';
-import { ISearchResult } from '../models/ISearchResult.model';
+import { ISearchResult } from '../models/ISearchResult.interface';
 import { Observable } from 'rxjs';
 
 @Component({

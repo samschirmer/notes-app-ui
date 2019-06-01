@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { ISearchResult } from '../models/ISearchResult.model';
+import { ISearchResult } from '../models/ISearchResult.interface';
 
 @Injectable()
 export class SearchService {

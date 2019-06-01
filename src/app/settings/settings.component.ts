@@ -35,6 +35,12 @@ export class SettingsComponent implements OnInit {
     });
   }
 
+  removeCategory(c: ICategory) {
+    this.api.removeCategory(c).subscribe((res: Array<ICategory>) => {
+      this.categories = res;
+    });
+  }
+
   signOut() {
     this.tokenService.signOut().subscribe(
       res =>      console.log(res),

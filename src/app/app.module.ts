@@ -17,6 +17,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { ResultsComponent } from './results/results.component';
 import { SearchService } from './services/search.service';
 import { ApiService } from './services/api.service';
+import { FlashComponent } from './shared/flash/flash.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ApiService } from './services/api.service';
     SettingsComponent,
     NavigationComponent,
     FooterComponent,
-    ResultsComponent
+    ResultsComponent,
+    FlashComponent,
   ],
   imports: [
     BrowserModule,

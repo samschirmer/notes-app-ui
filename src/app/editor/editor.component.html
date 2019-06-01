@@ -12,7 +12,13 @@
       <div class="control">
         <div class="select is-large is-fullwidth">
           <select name="category" formControlName="category">
-            <option *ngFor="let c of categories" [selected]="c.id === categories[0].id" [value]="c.id">{{c.name}}</option>
+            <option 
+              *ngFor="let c of categories; let i = index;" 
+              [id]="'category-select-' + c.id" 
+              [attr.selected]="i == 0 ? true : null" 
+              [value]="c.id"
+            >{{c.name}}
+            </option>
           </select>
         </div>
       </div>
@@ -21,14 +27,28 @@
     <div class="field">
       <label class="label">Subject</label>
       <div class="control">
-        <input id="editor-subject" (keyup)="removeFlag('subject')" class="input is-large" type="text" name="subject" formControlName="subject" />
+        <input 
+          id="editor-subject" 
+          (keyup)="removeFlag('subject')" 
+          class="input is-large" 
+          type="text" 
+          name="subject" 
+          formControlName="subject" 
+        />
       </div>
     </div>
 
     <div class="field">
       <label class="label">Content</label>
       <div class="control">
-        <textarea id="editor-content" (keyup)="removeFlag('content')" class="textarea is-large" type="text" name="content" formControlName="content"></textarea>  
+        <textarea 
+        id="editor-content" 
+        (keyup)="removeFlag('content')" 
+        class="textarea is-large" 
+        type="text" 
+        name="content" 
+        formControlName="content"
+      ></textarea>  
       </div>
     </div>
 
@@ -43,4 +63,6 @@
       </div>
     </div>
   </form> 
+
+  <app-flash id="editor-confirm" class="hidden" message="Got it!"></app-flash>
 </div>

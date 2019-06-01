@@ -1,0 +1,29 @@
+#flash-message {
+  font-size: 48px;
+  font-weight: 700;
+  color: #FF383F;
+}
+
+#flash-container {
+  position: fixed;
+  left: 45%;
+  top: 30%;
+  display: none;
+}
+
+.flash-show {
+  -webkit-animation: fadeOut 0.25s forwards;
+  animation: fadeOut 0.25s forwards;
+  -webkit-animation-delay: 0.25s;
+  animation-delay: 0.25s;
+}
+
+@-webkit-keyframes fadeOut {
+  from {opacity: 1;}
+  to {opacity: 0;}
+}
+
+@keyframes fadeOut {
+  from {opacity: 1;}
+  to {opacity: 0;}
+}

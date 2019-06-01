@@ -1,15 +1,22 @@
-<div>
-  settings works!
+<div id="settings-container">
   <p>Signed In?: <code>{{tokenService.userSignedIn()}}</code></p>
 
   <h1 class="is-size-3">Categories</h1>
   <ul>
-    <li *ngFor="let c of categories">{{ c.name }}</li>
+    <li class="is-size-4" *ngFor="let c of categories">
+      {{ c.name }}
+      <span class="icon is-medium">
+        <i (click)="removeCategory(c)" class="fas fa-times fa-fw"></i>
+      </span>
+    </li>
   </ul>
-  <h1 class="is-size-3">Add Category</h1>
   <div>
     <input [(ngModel)]="newCategory" /> 
-    <button (click)="addCategory()">+</button> 
+    <button (click)="addCategory()">
+      <span class="icon is-medium">
+        <i class="fas fa-plus fa-fw fa-3x"></i>
+      </span>
+    </button> 
   </div>
 
 

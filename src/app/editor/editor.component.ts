@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AngularTokenService } from 'angular-token';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
@@ -25,6 +25,7 @@ export class EditorComponent implements OnInit {
       'subject': ['', Validators.required],
       'content': ['', Validators.required]
     });
+    this.editorForm.controls['category'].setValue(1, {onlySelf: true});
   }
 
   editorForm: FormGroup;
@@ -35,6 +36,7 @@ export class EditorComponent implements OnInit {
   apiUrl = environment.API_BASE_URL;
   processing = false;
   categories: Array<ICategory>;
+  firstCategory: number;
 
 
   ngOnInit() {
@@ -42,6 +44,11 @@ export class EditorComponent implements OnInit {
     this.api.fetch('categories').subscribe((res: Array<ICategory>) => {
       this.categories = res;
     });
+  }
+
+  getFirstCategory() {
+    this.firstCategory = this.categories[0].id;
+    return this.firstCategory;
   }
 
   get f() { return this.editorForm.controls; }
@@ -58,6 +65,10 @@ export class EditorComponent implements OnInit {
         res => {
           console.log(res);
           this.router.navigate(['editor']);
+          this.showFlash();
+          this.editorForm.controls.subject.reset();
+          this.editorForm.controls.content.reset();
+          this.processing = false;
         },
         err => {
           console.log(err);
@@ -69,6 +80,20 @@ export class EditorComponent implements OnInit {
       if (this.f.content.value.length === 0) { document.getElementById('editor-content').classList.add('is-danger'); }
       this.processing = false;
     }
+  }
+
+  async showFlash() {
+    document.getElementById('flash-container').style.display = 'block';
+    document.getElementById('flash-container').classList.add('flash-show');
+    console.log('before wait');
+    await this.delay(400);
+    console.log('after wait');
+    document.getElementById('flash-container').style.display = 'none';
+    document.getElementById('flash-container').classList.remove('flash-show');
+  }
+
+  delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
   }
 
   removeFlag(field: string) {
