@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, HostListener } from '@angular/core';
+import { Component, OnInit, AfterContentInit, HostListener } from '@angular/core';
 import { AngularTokenService } from 'angular-token';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
@@ -55,6 +55,11 @@ export class EditorComponent implements OnInit {
     });
   }
 
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngAfterContentInit() {
+    document.getElementById('editor-subject').focus();
+  }
+
   getFirstCategory() {
     this.firstCategory = this.categories[0].id;
     return this.firstCategory;
@@ -64,6 +69,7 @@ export class EditorComponent implements OnInit {
 
   onSubmit() {
     this.processing = true;
+    document.getElementById('invalid').classList.add('is-hidden');
     if (this.editorForm.valid) {
       this.http.post(`${this.apiUrl}/notes`,
       { note: {
@@ -72,7 +78,6 @@ export class EditorComponent implements OnInit {
         body: this.f.content.value
       }}).subscribe(
         res => {
-          console.log(res);
           this.router.navigate(['editor']);
           this.showFlash();
           this.editorForm.controls.subject.reset();
@@ -80,7 +85,6 @@ export class EditorComponent implements OnInit {
           this.processing = false;
           this.message = this.messages[Math.floor(Math.random() * this.messages.length)];
           document.getElementById('editor-subject').focus();
-          console.log(this.message);
         },
         err => {
           console.log(err);
