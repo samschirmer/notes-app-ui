@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, HostListener } from '@angular/core';
 import { AngularTokenService } from 'angular-token';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
@@ -12,6 +12,7 @@ import { ICategory } from '../models/ICategory.interface';
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.css']
 })
+
 export class EditorComponent implements OnInit {
   constructor(
     private tokenService: AngularTokenService,
@@ -33,13 +34,21 @@ export class EditorComponent implements OnInit {
   subject = new FormControl('', Validators.required);
   content = new FormControl('', Validators.required);
 
+  messages = ['Got it', 'Cool', 'Saved', 'Success', 'Boom', 'Pop'];
   apiUrl = environment.API_BASE_URL;
   processing = false;
   categories: Array<ICategory>;
   firstCategory: number;
+  message = 'Boom';
 
+  @HostListener('keydown', ['$event']) onKeyDown(e) {
+    if (e.ctrlKey && e.keyCode === 13) {
+      this.onSubmit();
+    }
+  }
 
   ngOnInit() {
+    (<HTMLInputElement>document.getElementById('nav-search')).value = '';
     this.categories = [{}] as Array<ICategory>;
     this.api.fetch('categories').subscribe((res: Array<ICategory>) => {
       this.categories = res;
@@ -69,6 +78,9 @@ export class EditorComponent implements OnInit {
           this.editorForm.controls.subject.reset();
           this.editorForm.controls.content.reset();
           this.processing = false;
+          this.message = this.messages[Math.floor(Math.random() * this.messages.length)];
+          document.getElementById('editor-subject').focus();
+          console.log(this.message);
         },
         err => {
           console.log(err);
@@ -85,9 +97,7 @@ export class EditorComponent implements OnInit {
   async showFlash() {
     document.getElementById('flash-container').style.display = 'block';
     document.getElementById('flash-container').classList.add('flash-show');
-    console.log('before wait');
-    await this.delay(400);
-    console.log('after wait');
+    await this.delay(1000);
     document.getElementById('flash-container').style.display = 'none';
     document.getElementById('flash-container').classList.remove('flash-show');
   }

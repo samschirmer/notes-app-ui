@@ -18,6 +18,7 @@ import { ResultsComponent } from './results/results.component';
 import { SearchService } from './services/search.service';
 import { ApiService } from './services/api.service';
 import { FlashComponent } from './shared/flash/flash.component';
+import { NoteComponent } from './note/note.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { FlashComponent } from './shared/flash/flash.component';
     FooterComponent,
     ResultsComponent,
     FlashComponent,
+    NoteComponent,
   ],
   imports: [
     BrowserModule,

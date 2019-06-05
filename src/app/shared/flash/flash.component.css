@@ -12,18 +12,47 @@
 }
 
 .flash-show {
-  -webkit-animation: fadeOut 0.25s forwards;
-  animation: fadeOut 0.25s forwards;
-  -webkit-animation-delay: 0.25s;
-  animation-delay: 0.25s;
-}
-
-@-webkit-keyframes fadeOut {
-  from {opacity: 1;}
-  to {opacity: 0;}
+  -webkit-animation: fadeOut 1s forwards;
+  animation: fadeOut 1s forwards;
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
 }
 
 @keyframes fadeOut {
-  from {opacity: 1;}
-  to {opacity: 0;}
+    from {
+        transform: translate3d(0,40px,0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translate3d(0,0,0);
+    }
+}
+
+@-webkit-keyframes fadeOut {
+    from {
+        transform: translate3d(0,40px,0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translate3d(0,0,0);
+    }
+}
+
+.animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-fill-mode: both
+}
+
+.animatedFadeOut {
+    opacity: 1
+}
+
+.fadeOut {
+    opacity: 1;
+    animation-name: fadeOut;
+    -webkit-animation-name: fadeOut;
 }

@@ -6,11 +6,13 @@ import { RegisterComponent } from './register/register.component';
 import { EditorComponent } from './editor/editor.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ResultsComponent } from './results/results.component';
+import { NoteComponent } from './note/note.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'editor', pathMatch: 'full', canActivate: [AngularTokenService] },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'note/:id', component: NoteComponent, canActivate: [AngularTokenService] },
   { path: 'editor', component: EditorComponent, canActivate: [AngularTokenService] },
   { path: 'settings', component: SettingsComponent, canActivate: [AngularTokenService] },
   { path: 'results', component: ResultsComponent, canActivate: [AngularTokenService] },

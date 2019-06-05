@@ -20,7 +20,11 @@
               (mouseleave)="dehighlightRow(res.id)" 
               id="{{ res.id }}"
             >
-              <td class="has-text-left">{{ res.subject }}</td>
+              <td class="has-text-left">
+                <a [routerLink]="['/note', res.id]">
+                  {{ res.subject }}
+                </a>
+              </td>
               <td class="has-text-left">{{ res.body }}</td>
               <td class="has-text-left">{{ res.category }}</td>
               <td class="has-text-left">{{ res.author }}</td>

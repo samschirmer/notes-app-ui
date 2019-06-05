@@ -34,6 +34,7 @@
           type="text" 
           name="subject" 
           formControlName="subject" 
+          autofocus
         />
       </div>
     </div>
@@ -64,5 +65,5 @@
     </div>
   </form> 
 
-  <app-flash id="editor-confirm" class="hidden" message="Got it!"></app-flash>
+  <app-flash id="editor-confirm" class="hidden" [message]="message"></app-flash>
 </div>
