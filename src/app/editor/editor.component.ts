@@ -88,7 +88,10 @@ export class EditorComponent implements OnInit {
       );
     } else {
       document.getElementById('invalid').classList.remove('is-hidden');
-      if (this.f.subject.value.length === 0) { document.getElementById('editor-subject').classList.add('is-danger'); }
+      if (this.f.subject.value.length === 0) {
+        document.getElementById('editor-subject').classList.add('is-weird-danger');
+        document.getElementById('editor-subject').focus();
+      }
       if (this.f.content.value.length === 0) { document.getElementById('editor-content').classList.add('is-danger'); }
       this.processing = false;
     }

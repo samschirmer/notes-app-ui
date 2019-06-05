@@ -1,1 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+hr.red {
+  border: 2px dashed #ff3b3f;
+}
+
+.carbon {
+  color: #A9A9A9;
+}

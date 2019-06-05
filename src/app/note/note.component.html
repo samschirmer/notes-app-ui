@@ -1,10 +1,12 @@
 <div id="note-container">
-    <div class="page-header">
-      <h1 class="is-size-1">{{ note.category }} &gt; {{ note.subject }}</h1>
+
+    <div id="note-title">
+      <h1 class="is-size-1">
+        <span class="carbon"> {{ note.category }}: </span>{{ note.subject }}
+      </h1>
+      <hr class="red" />
     </div>
 
-    <hr />
-    
     <div id="note-content">
       {{ note.body }}
     </div>

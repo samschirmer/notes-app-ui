@@ -1,14 +1,38 @@
 <div id="editor-container">
   <form id="editor" [formGroup]="editorForm" (ngSubmit)="onSubmit()">
     <div class="page-header">
-      <h1 class="is-size-1">Create Note</h1>
       <p id="invalid" class="is-size-3 help is-danger is-hidden">Subject and content are both required</p>
+      <div class="field">
+        <label class="label carbon">Subject</label>
+        <div class="control">
+          <input 
+            id="editor-subject" 
+            (keyup)="removeFlag('subject')" 
+            class="input is-large" 
+            type="text" 
+            name="subject" 
+            formControlName="subject" 
+            autofocus
+          />
+        </div>
+      </div>
     </div>
 
-    <hr />
+    <div class="field">
+      <label class="label carbon">Content</label>
+      <div class="control">
+        <textarea 
+        id="editor-content" 
+        (keyup)="removeFlag('content')" 
+        class="textarea is-large" 
+        type="text" 
+        name="content" 
+        formControlName="content"
+      ></textarea>  
+      </div>
+    </div>
 
     <div class="field">
-      <label class="label">Category</label>
       <div class="control">
         <div class="select is-large is-fullwidth">
           <select name="category" formControlName="category">
@@ -25,35 +49,6 @@
     </div>
 
     <div class="field">
-      <label class="label">Subject</label>
-      <div class="control">
-        <input 
-          id="editor-subject" 
-          (keyup)="removeFlag('subject')" 
-          class="input is-large" 
-          type="text" 
-          name="subject" 
-          formControlName="subject" 
-          autofocus
-        />
-      </div>
-    </div>
-
-    <div class="field">
-      <label class="label">Content</label>
-      <div class="control">
-        <textarea 
-        id="editor-content" 
-        (keyup)="removeFlag('content')" 
-        class="textarea is-large" 
-        type="text" 
-        name="content" 
-        formControlName="content"
-      ></textarea>  
-      </div>
-    </div>
-
-    <div class="field">
       <div class="control">
         <button 
           id="login-button" 
@@ -61,6 +56,8 @@
           type="submit" 
           class="button input-button"
         >Save</button>
+        &nbsp; &nbsp; 
+        <span class="hint">Press CTRL+ENTER to save note instantly</span>
       </div>
     </div>
   </form> 
