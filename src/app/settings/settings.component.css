@@ -4,3 +4,12 @@
   height: 100%;
   min-height: 100vh;
 }
+
+.settings-section {
+  background-color: #CAEBF2;
+}
+
+.settings-header {
+  font-size: 28px;
+  font-weight: 700;
+}
