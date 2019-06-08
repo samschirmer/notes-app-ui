@@ -1,4 +1,6 @@
-<div id="results-container">
+<div id="categories-container">
+
+  <app-loader [loading]="loading"></app-loader>
 
   <div *ngIf="results.results.length === 0 && !loading; else results_list">
     <app-results-list-empty></app-results-list-empty>

@@ -11,21 +11,16 @@ import { Observable } from 'rxjs';
 export class ResultsComponent implements OnInit {
 
   results: ISearchResult;
-  resultsList: {};
   emptyResults = false;
 
   constructor(private searchResults: SearchService) { }
 
   ngOnInit() {
     this.results = {results:  []} as ISearchResult;
-    this.searchResults.searchChange.subscribe(ch => this.results = ch);
+    this.searchResults.searchChange.subscribe(ch => {
+      this.results = ch;
+    });
   }
 
-  highlightRow(id) {
-    document.getElementById(id).classList.add('is-selected');
-  }
-  dehighlightRow(id) {
-    document.getElementById(id).classList.remove('is-selected');
-  }
 
 }

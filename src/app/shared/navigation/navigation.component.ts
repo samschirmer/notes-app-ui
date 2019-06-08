@@ -21,7 +21,6 @@ export class NavigationComponent implements OnInit {
 
   submitSearch() {
     const terms = (<HTMLInputElement>document.getElementById('nav-search')).value;
-    console.log('search submitted for: ' + terms);
     this.searchService.query(terms);
     this.router.navigate(['results']);
   }

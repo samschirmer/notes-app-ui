@@ -19,6 +19,10 @@ import { SearchService } from './services/search.service';
 import { ApiService } from './services/api.service';
 import { FlashComponent } from './shared/flash/flash.component';
 import { NoteComponent } from './note/note.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { LoaderComponent } from './shared/loader/loader.component';
+import { ResultsListComponent } from './shared/results-list/results-list.component';
+import { ResultsListEmptyComponent } from './shared/results-list-empty/results-list-empty.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,11 @@ import { NoteComponent } from './note/note.component';
     FooterComponent,
     ResultsComponent,
     FlashComponent,
+    LoaderComponent,
     NoteComponent,
+    ResultsListComponent,
+    ResultsListEmptyComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,34 @@
+<div id="results-list">
+  <table class="table is-fullwidth">
+  <thead>
+  <tr>
+    <th class="has-text-left">Title</th>
+    <th class="has-text-left">Preview</th>
+    <th class="has-text-left">Category</th>
+    <th class="has-text-left">Date</th>
+    <th class="has-text-left">Author</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr 
+    *ngFor="let res of res.results" 
+    (mouseenter)="highlightRow(res.id)" 
+    (mouseleave)="dehighlightRow(res.id)" 
+    id="{{ res.id }}"
+  >
+    <td class="has-text-left">
+      <a [routerLink]="['/note', res.id]">
+        {{ res.subject }}
+      </a>
+    </td>
+    <td class="has-text-left">{{ res.body }}</td>
+    <td class="has-text-left">
+      <a [routerLink]="['/category', res.category_id]">
+        {{ res.category }}
+      </a>
+    <td class="has-text-left">{{ res.created_at | date: 'MM/dd/yyyy' }}</td>
+    <td class="has-text-left">{{ res.author }}</td>
+  </tr>
+  </tbody>
+  </table>
+</div>

@@ -7,6 +7,7 @@ import { EditorComponent } from './editor/editor.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ResultsComponent } from './results/results.component';
 import { NoteComponent } from './note/note.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'editor', pathMatch: 'full', canActivate: [AngularTokenService] },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'note/:id', component: NoteComponent, canActivate: [AngularTokenService] },
   { path: 'editor', component: EditorComponent, canActivate: [AngularTokenService] },
   { path: 'settings', component: SettingsComponent, canActivate: [AngularTokenService] },
+  { path: 'category/:id', component: CategoriesComponent, canActivate: [AngularTokenService] },
   { path: 'results', component: ResultsComponent, canActivate: [AngularTokenService] },
   { path: '**', redirectTo: '' }
 ];
