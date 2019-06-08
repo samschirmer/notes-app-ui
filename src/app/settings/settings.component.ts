@@ -29,9 +29,8 @@ export class SettingsComponent implements OnInit {
   }
 
   addCategory() {
-    console.log(this.newCategory);
+    (<HTMLInputElement>document.getElementById('settings-add-category')).value = '';
     this.api.createCategory(this.newCategory).subscribe((res: Array<ICategory>) => {
-      // res.status == 304 ? flash(name in use) : this.categories = res
       this.categories = res;
     });
   }
