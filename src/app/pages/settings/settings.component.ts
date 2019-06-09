@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularTokenService } from 'angular-token';
 import { Router } from '@angular/router';
-import { ICategory } from '../models/ICategory.interface';
-import { ApiService } from '../services/api.service';
+import { ICategory } from '../../models/ICategory.interface';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-settings',

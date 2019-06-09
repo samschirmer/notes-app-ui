@@ -11,10 +11,10 @@
       </li>
     </ul>
     <div *ngIf="categories.length < 10">
-      <input id="settings-add-category" (keyup.enter)="addCategory()" [(ngModel)]="newCategory" /> 
-      <button (click)="addCategory()">
+      <input id="settings-add-category" class="input" (keyup.enter)="addCategory()" [(ngModel)]="newCategory" /> 
+      <button id="settings-add-category" class="button" (click)="addCategory()">
         <span class="icon is-medium">
-          <i class="fas fa-plus fa-fw fa-3x"></i>
+          <i class="fas fa-plus"></i>
         </span>
       </button> 
     </div>

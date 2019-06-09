@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { ICategory } from '../models/ICategory.interface';
+import { INote } from '../models/INote.interface';
 
 const baseUrl = environment.API_BASE_URL;
 
@@ -31,4 +32,17 @@ export class ApiService {
       { category: { name: category.name, status: 0 }})
       .pipe(map(response => response));
   }
+
+  noteUpdateCreate(noteId: number, note: INote): Observable<any> {
+    if (noteId === 0) {
+      return this.http.post(`${baseUrl}/notes`, { note: note }).pipe(map(response => response));
+    } else {
+      return this.http.put(`${baseUrl}/notes/${noteId}`, { note: note }).pipe(map(response => response));
+    }
+  }
+
+  deleteNote(noteId: number): Observable<any> {
+    return this.http.delete(`${baseUrl}/notes/${noteId}`).pipe(map(response => response));
+  }
+
 }

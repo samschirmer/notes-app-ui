@@ -1,12 +1,10 @@
 import { Component, OnInit, AfterViewInit, HostListener } from '@angular/core';
 import { AngularTokenService } from 'angular-token';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { ApiService } from '../services/api.service';
-import { ICategory } from '../models/ICategory.interface';
-import { INote } from '../models/INote.interface';
+import { ApiService } from '../../services/api.service';
+import { INote } from '../../models/INote.interface';
 import { t } from '@angular/core/src/render3';
 
 @Component({
@@ -17,11 +15,8 @@ import { t } from '@angular/core/src/render3';
 
 export class NoteComponent implements OnInit {
   constructor(
-    private tokenService: AngularTokenService,
     private router: Router,
     private route: ActivatedRoute,
-    private fb: FormBuilder,
-    private http: HttpClient,
     private api: ApiService
     ) { }
 
@@ -35,6 +30,12 @@ export class NoteComponent implements OnInit {
       this.api.fetchOne('notes', +params['id']).subscribe((res: INote) => {
         this.note = res;
       });
+    });
+  }
+
+  deleteNote() {
+    this.api.deleteNote(this.note.id).subscribe((res: any) => {
+      this.router.navigate(['/']);
     });
   }
 

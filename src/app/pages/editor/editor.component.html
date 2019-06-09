@@ -13,6 +13,7 @@
             name="subject" 
             formControlName="subject" 
             autofocus
+            [value]="note.subject ? note.subject : ''"
           />
         </div>
       </div>
@@ -22,13 +23,15 @@
       <label class="label carbon">Content</label>
       <div class="control">
         <textarea 
-        id="editor-content" 
-        (keyup)="removeFlag('content')" 
-        class="textarea is-large" 
-        type="text" 
-        name="content" 
-        formControlName="content"
-      ></textarea>  
+          id="editor-content" 
+          (keyup)="removeFlag('content')" 
+          class="textarea is-large" 
+          type="text" 
+          name="content" 
+          formControlName="content"
+          [value]="note.body ? note.body : ''"
+        >
+        </textarea>  
       </div>
     </div>
 
@@ -39,7 +42,7 @@
             <option 
               *ngFor="let c of categories; let i = index;" 
               [id]="'category-select-' + c.id" 
-              [attr.selected]="i == 0 ? true : null" 
+              [attr.selected]="(note.id && note.category_id == c.id) || ( !note.id && i == 0) ? true : null" 
               [value]="c.id"
             >{{c.name}}
             </option>

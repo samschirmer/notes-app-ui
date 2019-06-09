@@ -1,0 +1,23 @@
+<div id="note-container">
+
+    <div id="note-title">
+      <span class="icon red" (click)="deleteNote()"><i class="fas fa-times fa-fw fa-2x"></i></span>
+      &nbsp;
+      &nbsp;
+      <a class="icon red" [routerLink]="['/editor', note.id]">
+        <i class="fas fa-pencil-alt fa-fw fa-2x"></i>
+      </a>
+      &nbsp;
+      <span class="carbon">{{ note.category }}</span>
+      <br />
+      <h1 class="is-size-1">
+        {{ note.subject }}
+      </h1>
+      <hr class="red" />
+    </div>
+
+    <div id="note-content">
+      {{ note.body }}
+    </div>
+
+</div>

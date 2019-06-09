@@ -7,22 +7,23 @@ import { environment } from 'src/environments/environment';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './/app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { EditorComponent } from './editor/editor.component';
-import { SettingsComponent } from './settings/settings.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { EditorComponent } from './pages/editor/editor.component';
+import { SettingsComponent } from './pages/settings/settings.component';
 import { NavigationComponent } from './shared/navigation/navigation.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { ResultsComponent } from './results/results.component';
+import { ResultsComponent } from './pages/results/results.component';
 import { SearchService } from './services/search.service';
 import { ApiService } from './services/api.service';
 import { FlashComponent } from './shared/flash/flash.component';
-import { NoteComponent } from './note/note.component';
-import { CategoriesComponent } from './categories/categories.component';
+import { NoteComponent } from './pages/note/note.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
 import { LoaderComponent } from './shared/loader/loader.component';
 import { ResultsListComponent } from './shared/results-list/results-list.component';
 import { ResultsListEmptyComponent } from './shared/results-list-empty/results-list-empty.component';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,9 @@ import { ResultsListEmptyComponent } from './shared/results-list-empty/results-l
   providers: [
     AngularTokenModule,
     SearchService,
-    ApiService
+    ApiService,
+    { provide: HTTP_INTERCEPTORS , useClass: ErrorInterceptor, multi: true },
+
   ],
   bootstrap: [AppComponent]
 })

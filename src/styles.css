@@ -2,6 +2,10 @@ hr.red {
   border: 2px dashed #ff3b3f;
 }
 
+.red {
+  color: #ff3b3f;
+}
+
 .carbon {
   color: #A9A9A9;
 }

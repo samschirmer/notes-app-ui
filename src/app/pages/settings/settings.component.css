@@ -13,3 +13,14 @@
   font-size: 28px;
   font-weight: 700;
 }
+
+input#settings-add-category {
+  width: 200px;
+  padding: 6px;
+}
+
+button#settings-add-category {
+  color: #efefef;
+  background-color: #ff3b3f;
+  font-size: 16px;
+}
