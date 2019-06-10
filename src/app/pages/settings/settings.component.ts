@@ -3,6 +3,7 @@ import { AngularTokenService } from 'angular-token';
 import { Router } from '@angular/router';
 import { ICategory } from '../../models/ICategory.interface';
 import { ApiService } from '../../services/api.service';
+import { ISettings } from 'src/app/models/ISettings.interface';
 
 @Component({
   selector: 'app-settings',
@@ -15,16 +16,22 @@ export class SettingsComponent implements OnInit {
     private tokenService: AngularTokenService,
     private api: ApiService,
     private router: Router
-    ) { }
+  ) { }
 
   categories: Array<ICategory>;
   newCategory: string;
-
+  settings: ISettings;
 
   ngOnInit() {
+    /*
     this.categories = [{}] as Array<ICategory>;
     this.api.fetch('categories').subscribe((res: Array<ICategory>) => {
       this.categories = res;
+    });
+    */
+
+    this.api.fetchSettings().subscribe((res: ISettings) => {
+      this.settings = res;
     });
   }
 

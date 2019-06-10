@@ -51,12 +51,9 @@ export class EditorComponent implements OnInit {
     this.categories = [{}] as Array<ICategory>;
     this.note = { id: 0, subject: '', body: '', category: ''} as INote;
     (<HTMLInputElement>document.getElementById('nav-search')).value = '';
-    this.api.fetch('categories').subscribe((res: Array<ICategory>) => { this.categories = res; });
 
     this.sub = this.route.params.subscribe(params => {
       if (params['id']) {
-        // DEBUG: this is a temporary hack: https://github.com/rails/rails/pull/36323
-        this.delay(1000);
         this.api.fetchOne('notes', +params['id']).subscribe((res: INote) => {
           this.note = res;
           this.editorForm.patchValue({ category: this.note.category_id });
@@ -65,6 +62,10 @@ export class EditorComponent implements OnInit {
         });
       }
     });
+
+    // NOTE - this is a temporary hack: https://github.com/rails/rails/pull/36323
+    this.delay(1000);
+    this.api.fetch('categories').subscribe((res: Array<ICategory>) => { this.categories = res; });
   }
 
   // tslint:disable-next-line:use-life-cycle-interface

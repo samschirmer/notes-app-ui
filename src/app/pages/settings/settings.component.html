@@ -1,6 +1,15 @@
 <div id="settings-container">
 
   <div class="settings-section">
+    <h1 class="settings-header">Your Organization</h1>
+    <div id="settings-company-name">
+      <input class="input" name="company" [value]="companyName" />
+    </div>
+  </div>
+
+  <hr class="red" />
+
+  <div class="settings-section">
     <h1 class="settings-header">Categories</h1>
     <ul>
       <li class="is-size-4" *ngFor="let c of categories">
