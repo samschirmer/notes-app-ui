@@ -21,18 +21,28 @@ export class SettingsComponent implements OnInit {
   categories: Array<ICategory>;
   newCategory: string;
   settings: ISettings;
+  companyName: string;
+  plan: string;
 
   ngOnInit() {
-    /*
     this.categories = [{}] as Array<ICategory>;
-    this.api.fetch('categories').subscribe((res: Array<ICategory>) => {
-      this.categories = res;
-    });
-    */
-
     this.api.fetchSettings().subscribe((res: ISettings) => {
       this.settings = res;
+      this.companyName = res.company.name;
+      this.categories = this.settings.categories;
+      this.plan = this.settings.plan.name;
     });
+  }
+
+  updateAccountName() {
+    console.log(this.companyName);
+    this.api.updateAccountName(this.companyName).subscribe((res: { account: string }) => {
+      this.companyName = res.account;
+    });
+  }
+
+  changePlan() {
+    console.log(`current plan: ${this.settings.plan.name} - changing it now`);
   }
 
   addCategory() {

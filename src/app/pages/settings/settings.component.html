@@ -3,7 +3,26 @@
   <div class="settings-section">
     <h1 class="settings-header">Your Organization</h1>
     <div id="settings-company-name">
-      <input class="input" name="company" [value]="companyName" />
+      <input class="input" id="settings-company-name" name="company" [(ngModel)]="companyName" />
+      <button id="settings-update-company" class="button" (click)="updateAccountName()">
+        <span class="icon is-medium">
+          <i class="fas fa-check"></i>
+        </span>
+      </button> 
+    </div>
+  </div>
+
+  <hr class="red" />
+
+  <div class="settings-section">
+    <h1 class="settings-header">Subscription</h1>
+    <div id="settings-company-name">
+      <input class="input" id="settings-plan" name="plan" [value]="plan" />
+      <button id="settings-change-plan" class="button" (click)="changePlan()">
+        <span class="icon is-medium">
+          <i class="fas fa-arrow-up"></i>
+        </span>
+      </button> 
     </div>
   </div>
 

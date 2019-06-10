@@ -22,8 +22,16 @@ export class ApiService {
     return this.http.get(`${baseUrl}/${path}/${id}`).pipe(map(response => response));
   }
 
+  fetchNoteForEditing(id: number): Observable<any> {
+    return this.http.get(`${baseUrl}/notes/${id}/edit`).pipe(map(response => response));
+  }
+
   fetchSettings(): Observable<object> {
     return this.http.get(`${baseUrl}/accounts/settings`).pipe(map(response => response));
+  }
+
+  updateAccountName(name: string): Observable<any> {
+    return this.http.put(`${baseUrl}/accounts/name`, { account: { name: name } }).pipe(map(response => response));
   }
 
   createCategory(name: string): Observable<any> {

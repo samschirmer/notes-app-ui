@@ -54,18 +54,20 @@ export class EditorComponent implements OnInit {
 
     this.sub = this.route.params.subscribe(params => {
       if (params['id']) {
-        this.api.fetchOne('notes', +params['id']).subscribe((res: INote) => {
-          this.note = res;
+        this.api.fetchNoteForEditing(+params['id']).subscribe((res: { note: INote, categories: Array<ICategory> }) => {
+          this.note = res.note;
+          this.categories = res.categories;
           this.editorForm.patchValue({ category: this.note.category_id });
           this.editorForm.patchValue({ subject: this.note.subject });
           this.editorForm.patchValue({ content: this.note.body });
         });
+      } else {
+        this.api.fetch('categories').subscribe((res: Array<ICategory>) => { this.categories = res; });
       }
     });
 
     // NOTE - this is a temporary hack: https://github.com/rails/rails/pull/36323
-    this.delay(1000);
-    this.api.fetch('categories').subscribe((res: Array<ICategory>) => { this.categories = res; });
+//    this.delay(1000);
   }
 
   // tslint:disable-next-line:use-life-cycle-interface
