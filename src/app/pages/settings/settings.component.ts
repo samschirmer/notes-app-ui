@@ -24,6 +24,7 @@ export class SettingsComponent implements OnInit {
   users: Array<IUser>;
   newCategory: string;
   newUser: string;
+  chosenUser: IUser;
   settings: ISettings;
   companyName: string;
   plan: IPlan;
@@ -56,8 +57,11 @@ export class SettingsComponent implements OnInit {
     console.log(`adding a user: ${this.newUser} -- opening modal`);
   }
 
-  removeUser(u: IUser) {
-    console.log(`removing a user: ${u.email} -- opening modal`);
+  editRemoveUser(u: IUser) {
+    console.log(`editing/removing a user: ${u.email} -- opening modal`);
+    this.chosenUser = u;
+    const userModal = document.getElementById('user-modal');
+    userModal.classList.remove('is-hidden');
   }
 
   addCategory() {

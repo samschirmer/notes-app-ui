@@ -24,6 +24,7 @@ import { LoaderComponent } from './shared/loader/loader.component';
 import { ResultsListComponent } from './shared/results-list/results-list.component';
 import { ResultsListEmptyComponent } from './shared/results-list-empty/results-list-empty.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { UserModalComponent } from './pages/settings/modals/user-modal/user-modal.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
     FooterComponent,
     ResultsComponent,
     FlashComponent,
+    UserModalComponent,
     LoaderComponent,
     NoteComponent,
     ResultsListComponent,

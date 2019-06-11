@@ -3,7 +3,7 @@
   <thead>
   <tr>
     <th class="has-text-left">Title</th>
-    <th class="has-text-left">Preview</th>
+    <th class="has-text-left is-hidden-mobile">Preview</th>
     <th class="has-text-left">Category</th>
     <th class="has-text-left">Date</th>
     <th class="has-text-left">Author</th>
@@ -21,7 +21,7 @@
         {{ res.subject }}
       </a>
     </td>
-    <td class="has-text-left">{{ res.body }}</td>
+    <td class="has-text-left is-hidden-mobile">{{ res.body }}</td>
     <td class="has-text-left">
       <a [routerLink]="['/category', res.category_id]">
         {{ res.category }}
