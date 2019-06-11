@@ -20,7 +20,12 @@ export class NavigationComponent implements OnInit {
   }
 
   submitSearch() {
+    const mobileMenu = document.getElementById('navbar');
+    const hamburger = document.getElementById('hamburger');
     const terms = (<HTMLInputElement>document.getElementById('nav-search')).value;
+
+    mobileMenu.classList.remove('is-active');
+    hamburger.classList.remove('is-active');
     this.searchService.query(terms);
     this.router.navigate(['results']);
   }
@@ -31,6 +36,18 @@ export class NavigationComponent implements OnInit {
       error =>    console.log(error)
     );
     this.router.navigate(['/login']);
+  }
+
+  toggleMenu() {
+    const menu = document.getElementById('navbar-icon');
+    menu.classList.toggle('is-active');
+  }
+
+  toggleMobileMenu() {
+    const mobileMenu = document.getElementById('navbar');
+    const hamburger = document.getElementById('hamburger');
+    mobileMenu.classList.toggle('is-active');
+    hamburger.classList.toggle('is-active');
   }
 
 }

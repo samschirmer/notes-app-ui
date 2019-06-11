@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { ICategory } from '../../models/ICategory.interface';
 import { ApiService } from '../../services/api.service';
 import { ISettings } from 'src/app/models/ISettings.interface';
+import { IUser } from 'src/app/models/IUser.interface';
+import { IPlan } from 'src/app/models/IPlan.interface';
 
 @Component({
   selector: 'app-settings',
@@ -19,18 +21,23 @@ export class SettingsComponent implements OnInit {
   ) { }
 
   categories: Array<ICategory>;
+  users: Array<IUser>;
   newCategory: string;
+  newUser: string;
   settings: ISettings;
   companyName: string;
-  plan: string;
+  plan: IPlan;
 
   ngOnInit() {
     this.categories = [{}] as Array<ICategory>;
+    this.users = [{}] as Array<IUser>;
+    this.plan = {} as IPlan;
     this.api.fetchSettings().subscribe((res: ISettings) => {
       this.settings = res;
       this.companyName = res.company.name;
       this.categories = this.settings.categories;
-      this.plan = this.settings.plan.name;
+      this.users = this.settings.users;
+      this.plan = this.settings.plan;
     });
   }
 
@@ -43,6 +50,14 @@ export class SettingsComponent implements OnInit {
 
   changePlan() {
     console.log(`current plan: ${this.settings.plan.name} - changing it now`);
+  }
+
+  addUser() {
+    console.log(`adding a user: ${this.newUser} -- opening modal`);
+  }
+
+  removeUser(u: IUser) {
+    console.log(`removing a user: ${u.email} -- opening modal`);
   }
 
   addCategory() {

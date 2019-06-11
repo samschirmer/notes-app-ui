@@ -19,3 +19,7 @@ a {
 #navbar-icon .navbar-link:hover {
   color: #ff3b3f;
 }
+
+#hamburger {
+  background-color: #fff;
+}

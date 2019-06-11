@@ -1,5 +1,6 @@
 import { ICategory } from './ICategory.interface';
 import { IUser } from './IUser.interface';
+import { IPlan } from './IPlan.interface';
 
 export interface ISettings {
   categories: Array<ICategory>;
@@ -8,8 +9,5 @@ export interface ISettings {
     id: number,
     name: string
   };
-  plan: {
-    id: number,
-    name: string
-  };
+  plan: IPlan;
 }
