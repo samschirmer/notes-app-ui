@@ -26,49 +26,64 @@
 
   <div class="settings-section">
     <h1 class="settings-header">Users</h1>
-    <ul>
-      <li class="is-size-4" *ngFor="let u of users">
-        {{ u.first_name }} {{ u.last_name}}
-        <span class="icon is-medium">
-          <i (click)="editRemoveUser(u)" class="fas fa-pencil-alt fa-fw red"></i>
-        </span>
-      </li>
-    </ul>
+    <table>
+      <tr class="is-size-4" *ngFor="let u of users">
+        <td>{{ u.first_name }} {{ u.last_name}}</td> 
+        <td>
+          <span class="icon is-medium">
+            <i (click)="editUser(u)" class="fas fa-pencil-alt fa-fw red"></i>
+          </span>
+        </td> 
+        <td>
+          <span class="icon is-medium">
+            <i (click)="removeUser(u)" class="fas fa-times fa-fw red"></i>
+          </span>
+        </td>
+      </tr>
 
-    <div *ngIf="users.length < plan.user_limit">
-      <input id="settings-add-user" class="input" (keyup.enter)="addUser()" [(ngModel)]="newUser" /> 
-      <button id="settings-add-user" class="button" (click)="addUser()">
-        <span class="icon is-medium">
-          <i class="fas fa-plus"></i>
-        </span>
-      </button> 
-    </div>
-  </div>
+      <tr>
+        <td></td>
+        <td></td>
+        <td *ngIf="users.length < plan.user_limit">
+          <button id="settings-add-user" class="button" (click)="addUser()">
+            <span class="icon is-medium">
+              <i class="fas fa-plus"></i>
+            </span>
+          </button> 
+        </td>
+      </tr>
+    </table>
+  </div>  
 
   <hr class="red" />
 
   <div class="settings-section">
     <h1 class="settings-header">Categories</h1>
-    <ul>
-      <li class="is-size-4" *ngFor="let c of categories">
-        {{ c.name }}
-        <span class="icon is-medium">
-          <i (click)="removeCategory(c)" class="fas fa-times fa-fw red"></i>
-        </span>
-      </li>
-    </ul>
-    <div *ngIf="categories.length < 10">
-      <input id="settings-add-category" class="input" (keyup.enter)="addCategory()" [(ngModel)]="newCategory" /> 
-      <button id="settings-add-category" class="button" (click)="addCategory()">
-        <span class="icon is-medium">
-          <i class="fas fa-plus"></i>
-        </span>
-      </button> 
-    </div>
+      <table>
+        <tr class="is-size-4" *ngFor="let c of categories">
+          <td>{{ c.name }}</td> 
+          <td>
+            <span class="icon is-medium">
+              <i (click)="removeCategory(c)" class="fas fa-times fa-fw red"></i>
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td *ngIf="categories.length < 10">
+            <button id="settings-add-category" class="button" (click)="addCategory()">
+              <span class="icon is-medium">
+                <i class="fas fa-plus"></i>
+              </span>
+            </button> 
+          </td>
+        </tr>
+      </table>
   </div>
 
   <hr class="red" />
 
 
-  <app-user-modal id="user-modal" class="is-hidden" [user]='chosenUser'></app-user-modal>
+  <app-user-modal [account]='currentAccount' [user]='chosenUser'></app-user-modal>
+  <app-plans-modal [account]='currentAccount' [plan]='plan'></app-plans-modal>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { AngularTokenService } from 'angular-token';
 import { Router } from '@angular/router';
 import { ICategory } from '../../models/ICategory.interface';
@@ -28,6 +28,7 @@ export class SettingsComponent implements OnInit {
   settings: ISettings;
   companyName: string;
   plan: IPlan;
+  currentAccount: number;
 
   ngOnInit() {
     this.categories = [{}] as Array<ICategory>;
@@ -39,7 +40,15 @@ export class SettingsComponent implements OnInit {
       this.categories = this.settings.categories;
       this.users = this.settings.users;
       this.plan = this.settings.plan;
+      this.currentAccount = this.users[0].account_id;
     });
+  }
+
+  @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(e: KeyboardEvent) {
+    const modals = document.getElementsByClassName('modal');
+    for (const m of modals as any) {
+      m.classList.remove('is-active');
+    }
   }
 
   updateAccountName() {
@@ -51,17 +60,27 @@ export class SettingsComponent implements OnInit {
 
   changePlan() {
     console.log(`current plan: ${this.settings.plan.name} - changing it now`);
+    const planModal = document.getElementById('plan-modal');
+    planModal.classList.add('is-active');
   }
 
   addUser() {
-    console.log(`adding a user: ${this.newUser} -- opening modal`);
+    console.log(this.users);
+    this.chosenUser = {} as IUser;
+    const userModal = document.getElementById('user-modal');
+    userModal.classList.add('is-active');
   }
 
-  editRemoveUser(u: IUser) {
-    console.log(`editing/removing a user: ${u.email} -- opening modal`);
+  editUser(u: IUser) {
     this.chosenUser = u;
     const userModal = document.getElementById('user-modal');
-    userModal.classList.remove('is-hidden');
+    userModal.classList.add('is-active');
+  }
+
+  removeUser(u: IUser) {
+    this.api.removeUser(u).subscribe((res: Array<IUser>) => {
+      this.users = res;
+    });
   }
 
   addCategory() {

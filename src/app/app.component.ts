@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { AngularTokenService } from 'angular-token';
 
 @Component({
@@ -6,7 +6,9 @@ import { AngularTokenService } from 'angular-token';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   constructor(public tokenService: AngularTokenService) {}
   title = 'app';
+
 }

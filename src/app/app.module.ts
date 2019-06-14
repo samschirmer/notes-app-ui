@@ -25,6 +25,7 @@ import { ResultsListComponent } from './shared/results-list/results-list.compone
 import { ResultsListEmptyComponent } from './shared/results-list-empty/results-list-empty.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { UserModalComponent } from './pages/settings/modals/user-modal/user-modal.component';
+import { PlansModalComponent } from './pages/settings/modals/plans-modal/plans-modal.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { UserModalComponent } from './pages/settings/modals/user-modal/user-moda
     ResultsComponent,
     FlashComponent,
     UserModalComponent,
+    PlansModalComponent,
     LoaderComponent,
     NoteComponent,
     ResultsListComponent,

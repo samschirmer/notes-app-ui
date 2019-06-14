@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { ICategory } from '../models/ICategory.interface';
 import { INote } from '../models/INote.interface';
+import { IUser } from '../models/IUser.interface';
 
 const baseUrl = environment.API_BASE_URL;
 
@@ -57,4 +58,15 @@ export class ApiService {
     return this.http.delete(`${baseUrl}/notes/${noteId}`).pipe(map(response => response));
   }
 
+  addUser(u: IUser): Observable<Object> {
+    return this.http.post(`${baseUrl}/auth`, u).pipe(map(response => response));
+  }
+
+  updateUserMetadata(u: IUser): Observable<Object> {
+    return this.http.put(`${baseUrl}/users/${u.id}`, { user: u}).pipe(map(response => response));
+  }
+
+  removeUser(u: IUser): Observable<Object> {
+    return this.http.delete(`${baseUrl}/users/${u.id}`).pipe(map(response => response));
+  }
 }

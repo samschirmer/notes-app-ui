@@ -1,7 +1,33 @@
-<div id="loading-splash">
-  <h1>
-    <span (click)="hideModal()" class="icon is-medium is-left">
-      <i class="fas fa-cog fa-fw fa-3x fa-pulse"></i>
-    </span>
-  </h1>
+<div class="modal" id="user-modal">
+  <div class="modal-background" (click)="hideModal()"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Edit User</p>
+      <button class="delete" aria-label="close" (click)="hideModal()"></button>
+    </header>
+    <section class="modal-card-body">
+
+        <form id="user-modal-form" autocomplete="off">
+          <label class="label">First Name</label> 
+          <input class="input" name="first-name" type="text" [(ngModel)]="user.first_name" autocomplete="off" />
+
+          <label class="label">Last Name</label> 
+          <input class="input" name="last-name" type="text" [(ngModel)]="user.last_name" autocomplete="off" />
+
+          <label class="label">Email</label> 
+          <input class="input" name="email" type="email" [(ngModel)]="user.email" autocomplete="off" />
+
+          <label class="label">New Password</label> 
+          <input class="input" name="new-password" type="password" [(ngModel)]="user.password" autocomplete="new-password" />
+
+          <label class="label">Confirm New Password</label> 
+          <input class="input" name="confirm-new-password" type="password" [(ngModel)]="user.password_confirmation" autocomplete="new-password" />
+        </form>
+
+    </section>
+    <footer class="modal-card-foot">
+      <button id="update-user-button" class="button" (click)="user.id ? updateUser() : addUser()">Save changes</button>
+      <button class="button" (click)="hideModal()">Cancel</button>
+    </footer>
+  </div>
 </div>

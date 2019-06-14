@@ -67,7 +67,7 @@
 
         <div id="settings-menu" class="navbar-dropdown is-right">
           <a class="navbar-item" (click)="toggleMenu()">
-            Profile
+            Signed in: {{ tokenService.userSignedIn() }}
           </a>
           <a class="navbar-item" [routerLink]="['/', 'settings']" (click)="toggleMenu()">
             Settings
