@@ -35,7 +35,7 @@
           </span>
         </td> 
         <td>
-          <span class="icon is-medium" *ngIf="u.id === loggedInUser.id || isAdmin">
+          <span class="icon is-medium" *ngIf="u.id !== loggedInUser.id && isAdmin">
             <i (click)="removeUser(u)" class="fas fa-times fa-fw red"></i>
           </span>
         </td>
