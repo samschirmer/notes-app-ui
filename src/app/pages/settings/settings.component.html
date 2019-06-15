@@ -1,6 +1,6 @@
 <div id="settings-container">
 
-  <div class="settings-section">
+  <div *ngIf="isAdmin" class="settings-section">
     <h1 class="settings-header">Your Organization</h1>
     <div id="settings-company-name">
       <input class="input" id="settings-company-name" name="company" [(ngModel)]="companyName" />
@@ -30,12 +30,12 @@
       <tr class="is-size-4" *ngFor="let u of users">
         <td>{{ u.first_name }} {{ u.last_name}}</td> 
         <td>
-          <span class="icon is-medium">
+          <span class="icon is-medium" *ngIf="u.id === loggedInUser.id || isAdmin">
             <i (click)="editUser(u)" class="fas fa-pencil-alt fa-fw red"></i>
           </span>
         </td> 
         <td>
-          <span class="icon is-medium">
+          <span class="icon is-medium" *ngIf="u.id === loggedInUser.id || isAdmin">
             <i (click)="removeUser(u)" class="fas fa-times fa-fw red"></i>
           </span>
         </td>
@@ -46,7 +46,7 @@
         <td></td>
         <td *ngIf="users.length < plan.user_limit">
           <button id="settings-add-user" class="button" (click)="addUser()">
-            <span class="icon is-medium">
+            <span class="icon is-medium" *ngIf="isAdmin">
               <i class="fas fa-plus"></i>
             </span>
           </button> 
@@ -63,13 +63,15 @@
         <tr class="is-size-4" *ngFor="let c of categories">
           <td>{{ c.name }}</td> 
           <td>
-            <span class="icon is-medium">
+            <span class="icon is-medium" *ngIf="isAdmin">
               <i (click)="removeCategory(c)" class="fas fa-times fa-fw red"></i>
             </span>
           </td>
         </tr>
         <tr>
-          <td></td>
+          <td>
+            <input id="settings-add-category" class="input" (keyup.enter)="addCategory()" [(ngModel)]="newCategory" /> 
+          </td>
           <td *ngIf="categories.length < 10">
             <button id="settings-add-category" class="button" (click)="addCategory()">
               <span class="icon is-medium">

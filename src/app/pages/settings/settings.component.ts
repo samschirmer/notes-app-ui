@@ -24,23 +24,28 @@ export class SettingsComponent implements OnInit {
   users: Array<IUser>;
   newCategory: string;
   newUser: string;
+  loggedInUser: IUser;
   chosenUser: IUser;
   settings: ISettings;
   companyName: string;
   plan: IPlan;
   currentAccount: number;
+  isAdmin: boolean;
 
   ngOnInit() {
     this.categories = [{}] as Array<ICategory>;
+    this.loggedInUser = {} as IUser;
     this.users = [{}] as Array<IUser>;
     this.plan = {} as IPlan;
     this.api.fetchSettings().subscribe((res: ISettings) => {
       this.settings = res;
-      this.companyName = res.company.name;
+      this.companyName = this.settings.company.name;
+      this.loggedInUser = this.settings.user;
       this.categories = this.settings.categories;
       this.users = this.settings.users;
       this.plan = this.settings.plan;
       this.currentAccount = this.users[0].account_id;
+      this.isAdmin = this.settings.user.status > 1;
     });
   }
 
