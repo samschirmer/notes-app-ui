@@ -6,6 +6,7 @@ import { ApiService } from '../../services/api.service';
 import { ISettings } from 'src/app/models/ISettings.interface';
 import { IUser } from 'src/app/models/IUser.interface';
 import { IPlan } from 'src/app/models/IPlan.interface';
+import { count } from 'rxjs/operators';
 
 @Component({
   selector: 'app-settings',
@@ -41,12 +42,21 @@ export class SettingsComponent implements OnInit {
       this.settings = res;
       this.companyName = this.settings.company.name;
       this.loggedInUser = this.settings.user;
-      this.categories = this.settings.categories;
       this.users = this.settings.users;
       this.plan = this.settings.plan;
       this.currentAccount = this.users[0].account_id;
       this.isAdmin = this.settings.user.status > 1;
+
+      for (let i = 0; i < this.settings.categories.length; i++) {
+        if (this.settings.categories[i].name.toLowerCase() === 'uncategorized') {
+          console.log('found the uncategorized one');
+          this.settings.categories.splice(i, 1);
+        }
+      }
+
+      this.categories = this.settings.categories;
     });
+
   }
 
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(e: KeyboardEvent) {
