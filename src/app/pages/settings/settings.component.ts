@@ -49,7 +49,6 @@ export class SettingsComponent implements OnInit {
 
       for (let i = 0; i < this.settings.categories.length; i++) {
         if (this.settings.categories[i].name.toLowerCase() === 'uncategorized') {
-          console.log('found the uncategorized one');
           this.settings.categories.splice(i, 1);
         }
       }
